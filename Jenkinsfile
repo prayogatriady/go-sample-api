@@ -46,17 +46,28 @@
 // }
 
 pipeline {
-    agent {
-        node {
-            label "linux && golang"
-        }
-    }
+    agent any
 
     stages {
         stage("Helloow") {
             steps {
                 echo "Hello Pipeline"
             }
+        }
+    }
+
+    post {
+        always {
+            echo "I always called"
+        }
+        success {
+            echo "Succeed bruh"
+        }
+        failure {
+            echo "Nuf, failed :("
+        }
+        Cleanup {
+            echo "I always called too, but afterwards instead"
         }
     }
 }
