@@ -66,7 +66,7 @@ pipeline {
         failure {
             echo "Nuf, failed :("
         }
-        Cleanup {
+        cleanup {
             echo "I always called too, but afterwards instead"
         }
     }
