@@ -1,0 +1,11 @@
+version: "3"
+services:
+  go-sample-api:
+    container_name: go-sample-api
+    image: go-sample-api:latest
+    restart: always
+    ports:
+      - 3000:3000
+
+      
+
