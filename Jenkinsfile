@@ -1,46 +1,62 @@
-pipeline {
-    agent any
+// pipeline {
+//     agent any
 
-    environment {
-        // Define environment variables if needed
-        DOCKER_IMAGE_NAME = "go-sample-api"
+//     environment {
+//         // Define environment variables if needed
+//         DOCKER_IMAGE_NAME = "go-sample-api"
+//     }
+
+//     stages {
+//         stage('Build Container Image') {
+//             steps {
+//                 script {
+//                     // Build the Docker image
+//                     sh "docker build -t $DOCKER_IMAGE_NAME ."
+//                 }
+//             }
+//         }
+
+//         stage('Deploy') {
+//             steps {
+//                 script {
+//                     // Deploy via docker-compose
+//                     sh "docker rm -f $DOCKER_IMAGE_NAME && docker-compose up -d"
+//                 }
+//             }
+//         }
+
+//         stage('Cleanup') {
+//             steps {
+//                 script {
+//                     // Clean up, remove the local Docker image
+//                     sh "docker rmi $DOCKER_IMAGE_NAME"
+//                 }
+//             }
+//         }
+//     }
+
+//     post {
+//         success {
+//             echo 'Build and deployment succeeded!'
+//         }
+//         failure {
+//             echo 'Build or deployment failed!'
+//         }
+//     }
+// }
+
+pipeline {
+    agent {
+        node {
+            label "linux && golang"
+        }
     }
 
     stages {
-        stage('Build Container Image') {
+        stage("Helloow") {
             steps {
-                script {
-                    // Build the Docker image
-                    sh "docker build -t $DOCKER_IMAGE_NAME ."
-                }
+                echo "Hello Pipeline"
             }
-        }
-
-        stage('Deploy') {
-            steps {
-                script {
-                    // Deploy via docker-compose
-                    sh "docker rm -f $DOCKER_IMAGE_NAME && docker-compose up -d"
-                }
-            }
-        }
-
-        stage('Cleanup') {
-            steps {
-                script {
-                    // Clean up, remove the local Docker image
-                    sh "docker rmi $DOCKER_IMAGE_NAME"
-                }
-            }
-        }
-    }
-
-    post {
-        success {
-            echo 'Build and deployment succeeded!'
-        }
-        failure {
-            echo 'Build or deployment failed!'
         }
     }
 }
