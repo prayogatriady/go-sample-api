@@ -1,4 +1,4 @@
-module 1-simple-api
+module go-simple-api
 
 go 1.17
 
